@@ -1,0 +1,165 @@
+<!DOCTYPE html-->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href=" css/jquery.mobile-1.4.5.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<style type="text/css">
+     p{
+        text-align: center;
+     }
+     </style>
+     <title> Control escolar </title>
+     <script type="text/javascript">
+      $(document).ready(function inicio(){
+                     var btnEnvio=$("#enviar");
+                     btnEnvio.click(function enviarDatos(){
+                     var nom=$("#nombre").val();
+                     var ap=$("#apellidop").val();
+                     var am=$("#apellidom").val();
+                     var dir=$("#direccion").val();
+                     var tel=$("#telefono").val();
+                     var email=$("#email").val();
+
+
+                        $.ajax({
+                            type:"POST",
+                            url:"enviar.php",
+                           /* url:"http://loguz1.260mb.net/envio.php",*/
+                            data:"nombre="+nom+"&apellidop="+ap+"&apellidom="+am+"&direccion="+dir+"&telefono="+tel+"&email="+email,
+                            success: recepcion
+                            });
+                       });
+                       function recepcion(datos) {
+                       
+                       var resp=$("#respuesta");
+                       resp.html(datos);
+                       }
+                        });
+                 </script>
+                 <script type="text/javascript">
+                    $(document).ready(function calcularPromedio(){
+                       var btnProm=$("#registro");
+                       btnProm.click(function enviarPromedio(){
+                        var mate=$("#materia").val();
+                          var cal1=$("#calificacion1").val();
+                              var cal2=$("#calificacion2").val();
+                               var cal3=$("#calificacion3").val();
+                                 var cal4=$("#calificacion4").val();
+                               $.ajax({
+                            type:"POST",
+                            url:"enviar1.php",
+                           /* url:"http://loguz1.260mb.net/envio.php",*/
+                            data:"materia="+mate+"&calificacion1="+cal1+"&calificacion2="+cal2+"&calificacion3="+cal3+"&calificacion4="+cal4,
+                            success: calificaciones
+                            });
+                       });
+                       
+                       function calificaciones(datos) {
+                       var resp=$("#resp");
+                       resp.html(datos);
+                       }
+                        });
+                     </script>     
+        </head>
+
+<body>
+     
+<div data-role="page" id="principal" data-theme="b">
+    <div data-role="header">
+        <p>SERVICIOS ESCOLARES</p>
+</div>
+   <div data-role="content">
+   <p>Contenido</p>
+<a href="#Pagina2" data-role="button" data-transition="pop"> Alumno</a>
+<a href="#Pagina3" data-role="button" data-transition="pop"> Calificacion</a>
+
+</div>
+<div data-role="footer">
+</div>
+</div>
+
+
+
+
+<div data-role="page" id="Pagina2">
+    <div data-role="header">
+        <a href="#principal" data-role="button" data-transition="fade" data-add-back-btn="true" data-icon="home">Regresar</a>
+      
+</div>
+    <div data-role="content">
+   
+    <div data-role="footer">
+        <p>Datos de Alumno</p>
+        <form method="post" action="enviar.php" style="text-align: justify; font-size: 15px">
+                 <div class="ui-field-contain">
+                 <label for="nombre">Nombre:</label>
+                 <input type="text" name="nombre" id="nombre"/></br></br>
+                 <label for="apellidop">Apellido Paterno:</label>
+                 <input type="text" name="apellidop" id="apellidop"/></br></br>
+                 <label for="apellidom">Apellido Materno:</label>
+                 <input type="text" name="apellidom" id="apellidom"/></br></br>
+                 <label for="direccion">Direccion:</label>
+                 <input type="text" name="direccion" id="direccion"/></br></br>
+                 <label for="telelefono">Telefono:</label>
+                 <input type="text" name="telefono" id="telefono"/></br></br>
+                 <label for="email">Email:</label>
+                <input type="text" name="email" id="email"/></br></br>
+                    </div>
+                 <input type="button" name="enviar" id="enviar" value="Enviar datos"/>
+          </form>
+        
+              <div data-transition="flip" id="respuesta"></div>
+    </div>
+</div>
+    <div data-role="footer">
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" id="Pagina3">
+    <div data-role="header">
+        <a href="#principal" data-role="button" data-transition="slidedown" data-add-back-btn="true" data-icon="home">Regresar</a>
+</div>
+    <div data-role="content">
+    <div data-role="footer">
+        <p>Calificacion</p>
+        <form method="post" action="enviar1.php" >
+                    <div class="ui-field-contain">
+                 <label for="materia">Materia:</label>
+                 <input type="text" name="materia" id="materia"/></br></br>
+                 <label for="calificacion1">Calificacion 1:</label>
+                 <input type="text" name="calificacion1" id="calificacion1"/></br></br>
+                 <label for="calificacion2">Calificacion 2:</label>
+                 <input type="text" name="calificacion2" id="calificacion2"/></br></br>
+                 <label for="calificacion3">Calificacion 3:</label>
+                 <input type="text" name="calificacion3" id="calificacion3"/></br></br>
+                 <label for="calificacion4">Calificacion 4:</label>
+                 <input type="text" name="calificacion4" id="calificacion4"/></br></br>
+                 </div>
+                 <input type="button" name="registro" id="registro" value="Enviar">
+                 </form>
+                 <div data-transition="slide" id="resp">  
+                 </div>
+                 </div>
+                 <div data-role="footer">
+               
+                  </div>
+                   </div>
+      </div>
+
+</body>
+</html>
