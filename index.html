@@ -5,6 +5,8 @@
 <link rel="stylesheet" href=" css/jquery.mobile-1.4.5.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+src="phonegap.js"></script>
 <style type="text/css">
      p{
         text-align: center;
@@ -25,8 +27,8 @@
 
                         $.ajax({
                             type:"POST",
-                            url:"enviar.php",
-                           /* url:"http://loguz1.260mb.net/envio.php",*/
+                            /*url:"enviar.php",*/
+                           url:"http://mobileapp.260mb.net/enviar.php",
                             data:"nombre="+nom+"&apellidop="+ap+"&apellidom="+am+"&direccion="+dir+"&telefono="+tel+"&email="+email,
                             success: recepcion
                             });
@@ -49,8 +51,8 @@
                                  var cal4=$("#calificacion4").val();
                                $.ajax({
                             type:"POST",
-                            url:"enviar1.php",
-                           /* url:"http://loguz1.260mb.net/envio.php",*/
+                           /* url:"enviar1.php",*/
+                           url:"http://mobileapp.260mb.net/enviar1.php",
                             data:"materia="+mate+"&calificacion1="+cal1+"&calificacion2="+cal2+"&calificacion3="+cal3+"&calificacion4="+cal4,
                             success: calificaciones
                             });
